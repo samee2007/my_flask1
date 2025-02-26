@@ -85,9 +85,9 @@
                 <td>{{ meal.logged_at }}</td>
                 <td>
                     <div class="action-buttons">
-                        <a href="{{ url_for('edit_meal', meal_id=meal.meal_id) }}" class="btn edit-btn">Edit</a>
+                        <a href="{{ url_for('edit_meal', meal_id=meal.meal_id) }}" class="btn btn-primary">Edit</a>
                         <form action="{{ url_for('delete_meal', meal_id=meal.meal_id) }}" method="POST" style="display:inline;">
-                            <button type="submit" class="btn delete-btn" onclick="return confirm('Are you sure?')">Delete</button>
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure?')">Delete</button>
                         </form>
                     </div>
                 </td>

@@ -22,7 +22,7 @@ db_config = {
     'host': 'localhost',
     'user': 'root',           
     'password': '',           
-    'database': 'calorie_tracker' 
+    'database': 'calorie_tracker',
 }
 
 def get_meals():
