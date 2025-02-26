@@ -1,49 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Food Suggestions Result</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 20px;
-        }
-
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
-            border: 1px solid black;
-        }
-
-        th, td {
-            padding: 12px;
-            text-align: left;
-            border: 1px solid black;
-        }
-
-        th {
-            background-color: white;
-        }
-
-        td {
-            background-color: white;
-        }
-
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            margin-top: 20px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: lightgray;
-        }
-    </style>
-</head>
+{% extends "base.html" %}
+{% block content %}
 <body>
     <h1>Food Suggestions</h1>
 
@@ -63,6 +19,6 @@
     </table>
 
     <br><br>
-    <button onclick="window.location.href='/food-suggestion'">Go Back</button>
+    <button  onclick="window.location.href='/food-suggestion'" class="btn btn-link">Go back</button>
 </body>
-</html>
+{% endblock %}
