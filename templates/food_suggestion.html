@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Food Suggestions</h2>
+
+
+    <form action="/get_suggestion" method="POST">
+        <div class="mb-3">
+            <label for="remaining_calories" class="form-label">Remaining Calorie Budget</label>
+            <input type="number" class="form-control" id="remaining_calories" name="remaining_calories" min="0" required>
+        </div>
+        <div class="mb-3">
+            <label for="dietary_preference" class="form-label">Dietary Preference</label>
+            <select class="form-select" id="dietary_preference" name="dietary_preference" required>
+                <option value="" disabled selected>Select your preference</option>
+                <option value="vegetarian">Vegetarian</option>
+                <option value="vegan">Vegan</option>
+                <option value="keto">Keto</option>
+                <option value="none">No Preference</option>
+            </select>
+        </div>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Get Suggestions</button>
+        </div>
+    </form>
+{% endblock %}
+
+    

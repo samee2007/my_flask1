@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    input, select {
+        width: 250px; 
+        padding:8px /* Adjust as needed */
+    }
+    button{
+         display: block;
+         width :270px;
+         padding: 10px;
+         margin: 10px auto;
+         text-align: center;
+    }
+</style>
+
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Add Meal</h2>
+
+    <!-- Flash Messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div>
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+    <!-- Meal Entry Form -->
+    <form action="/enter_meal" method="POST">
+        <div class="mb-3">
+            <label for="food_item" class="form-label">Select Food Item</label>
+            <select class="form-select" id="food_item" name="food_item" required>
+                <option value="" disabled selected>Select a food item</option>
+                {% for food in food_items %}
+                <option value="{{ food }}">{{ food }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="quantity" class="form-label">Quantity</label>
+            <input type="number" class="form-control" id="quantity" name="quantity" min="1" required>
+        </div>
+        <div class="mb-3">
+            <label for="meal_type" class="form-label">Meal Type</label>
+            <select class="form-select" id="meal_type" name="meal_type" required>
+                <option value="" disabled selected>Select meal type</option>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Snack">Snack</option>
+            </select>
+        </div>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Add Meal</button>
+        </div>
+    </form>
+
+    <h3 class="mt-5 text-center">Last 2 Days' Meals List</h3>
+    <table class="table table-bordered mt-3">
+        <thead>
+            <tr>
+                <th>Food Item</th>
+                <th>Quantity </th>
+                <th>Meal Type</th>
+                <th>Calories</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for meal in meals %}
+            <tr>
+                <td>{{ meal.food_item }}</td>
+                <td>{{ meal.quantity }}</td>
+                <td>{{ meal.meal_type }}</td>
+                <td>{{ meal.calories }}</td>
+                <td>{{ meal.logged_at }}</td>
+                <td>
+                    <div class="action-buttons">
+                        <a href="{{ url_for('edit_meal', meal_id=meal.meal_id) }}" class="btn edit-btn">Edit</a>
+                        <form action="{{ url_for('delete_meal', meal_id=meal.meal_id) }}" method="POST" style="display:inline;">
+                            <button type="submit" class="btn delete-btn" onclick="return confirm('Are you sure?')">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

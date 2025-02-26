@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    body {
+        background: url("{{ url_for('static', filename='background.jpg') }}") no-repeat center center fixed;
+        background-size: cover;
+    }
+</style>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center">
+            <h1>Welcome</h1>
+            <p class="lead">Your account has been created successfully.</p>
+            <div class="mt-4">
+                <a href="/enter_meal" class="btn btn-primary btn-lg">Enter Your Meal</a>
+            </div>
+            
+            <div class="mt-4">
+                <a href="/calorie-measurement" class="btn btn-primary btn-lg mt mb-3">Start Tracking Calories</a>
+            </div>
+            <div class="mt-2">   
+                    <a href="/food-suggestion" class="btn btn-primary btn-lg mb-3">Get Food Suggestions</a>
+            </div>
+            <div class="mt-2">   
+                <a href="/calorie-target" class="btn btn-primary btn-lg mb-3">Set Your Calorie Target</a>
+            </div>
+            <div class="mt-2">   
+                <a href="/view-calorie-chart" class="btn btn-primary btn-lg mb-3"> View Calorie Chart</a>
+            </div>
+           
+            
+        </div>
+    </div>
+</div>
+{% endblock %}

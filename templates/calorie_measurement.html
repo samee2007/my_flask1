@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Calorie Measurement</h2>
+    <form action="/calorie-measurement" method="POST">
+        <div class="mb-3">
+            <label for="food_item" class="form-label">Select Food Item</label>
+            <select class="form-select" id="food_item" name="food_item" required>
+                <option value="" disabled selected>Select a food item</option>
+                {% for food in food_items %}
+                <option value="{{ food }}">{{ food }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="quantity" class="form-label">Quantity</label>
+            <input type="number" class="form-control" id="quantity" name="quantity" min="1" required>
+        </div>
+        <div class="d-grid">
+            <button type="submit" class="btn btn-primary">Calculate Calories</button>
+        </div>
+    </form>
+    {% if total_calories is not none %}
+    <div class="alert alert-success mt-4" role="alert">
+        Total Calories: {{ total_calories }} kcal
+    </div>
+    {% endif %}
+</div>
+{% endblock %}
