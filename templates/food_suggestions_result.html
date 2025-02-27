@@ -1,24 +1,36 @@
 {% extends "base.html" %}
+
+{% block menu %}
+    {% include "menu.html" %}
+{% endblock %}
+
 {% block content %}
-<body>
-    <h1>Food Suggestions</h1>
+<div class="container mt-4">
+    <h2 class="text-center mb-4">Food Suggestions</h2>
 
-    <table>
-        <tr>
-            <th>Food Name</th>
-            <th>Quantity</th>
-            <th>Dietary Preference</th>
-        </tr>
-        {% for food in food_suggestions %}
-        <tr>
-            <td>{{ food.food_name }}</td>
-            <td>{{ food.serving_size}}</td>
-            <td>{{ food.dietary_preference }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped text-center">
+            <thead class="table-dark">
+                <tr>
+                    <th>Food Name</th>
+                    <th>Quantity</th>
+                    <th>Dietary Preference</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for food in food_suggestions %}
+                <tr>
+                    <td>{{ food.food_name }}</td>
+                    <td>{{ food.serving_size }}</td>
+                    <td>{{ food.dietary_preference }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
-    <br><br>
-    <button  onclick="window.location.href='/food-suggestion'" class="btn btn-link">Go back</button>
-</body>
+    <div class="text-center mt-3">
+        <a href="/food-suggestion" class="btn btn-primary">Go Back</a>
+    </div>
+</div>
 {% endblock %}
